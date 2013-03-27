@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="fn_handle_listen" type="RESOURCE"/>
+  <resource name="fn_handle_connect" type="RESOURCE"/>
+  <resource name="fn_handle_destroy" type="RESOURCE"/>
+</resources>

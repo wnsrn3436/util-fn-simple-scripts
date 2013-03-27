@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="fn_init" type="RESOURCE"/>
+  <resource name="fn_final" type="RESOURCE"/>
+  <resource name="TCP" type="GROUP"/>
+  <resource name="Message_Send" type="GROUP"/>
+  <resource name="Message_Receive" type="GROUP"/>
+  <resource name="Misc" type="GROUP"/>
+</resources>

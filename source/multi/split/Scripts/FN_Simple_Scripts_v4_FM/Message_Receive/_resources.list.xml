@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="fn_message_receive" type="RESOURCE"/>
+  <resource name="fn_message_break" type="RESOURCE"/>
+  <resource name="fn_message_skip" type="RESOURCE"/>
+  <resource name="fn_get_received_handle" type="RESOURCE"/>
+  <resource name="fn_get_message_id" type="RESOURCE"/>
+  <resource name="fn_get_message_sent_player" type="RESOURCE"/>
+</resources>

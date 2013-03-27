@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="write_string_v2" type="RESOURCE"/>
+  <resource name="read_string_v2" type="RESOURCE"/>
+  <resource name="fn_message_send" type="RESOURCE"/>
+</resources>

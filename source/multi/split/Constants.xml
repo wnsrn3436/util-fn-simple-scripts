@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<constants>
+  <constant name="cfn_server_error_event" value="3"/>
+  <constant name="cfn_player_exit_event" value="2"/>
+  <constant name="cfn_player_join_event" value="1"/>
+  <constant name="cfn_message_event" value="0"/>
+  <constant name="cfn_game_version" value="&quot;FNs_v4.2_FM&quot;"/>
+  <constant name="cfn_error_text_4" value="&quot;Your game is different from the version of the server.&quot;"/>
+  <constant name="cfn_error_text_3" value="&quot;Server is closed.&quot;"/>
+  <constant name="cfn_error_text_2" value="&quot;Connection with some of the players lost.&quot;"/>
+  <constant name="cfn_error_text_1" value="&quot;Persons of the server is full.&quot;"/>
+  <constant name="send_other" value="-5"/>
+  <constant name="send_all" value="-4"/>
+  <constant name="send_all_me" value="-3"/>
+  <constant name="send_all_server" value="-2"/>
+  <constant name="send_all_server_me" value="-1"/>
+  <constant name="send_server" value="0"/>
+</constants>

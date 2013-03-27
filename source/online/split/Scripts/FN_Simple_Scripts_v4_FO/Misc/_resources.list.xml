@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="fn_get_error_string" type="RESOURCE"/>
+  <resource name="fn_get_my_space" type="RESOURCE"/>
+  <resource name="fn_get_my_player_id" type="RESOURCE"/>
+  <resource name="fn_get_player_number" type="RESOURCE"/>
+  <resource name="fn_get_space_player_number" type="RESOURCE"/>
+  <resource name="fn_get_space_player_ds_list" type="RESOURCE"/>
+  <resource name="fn_get_player_ip_address" type="RESOURCE"/>
+  <resource name="fn_set_player_accept_max" type="RESOURCE"/>
+  <resource name="fn_set_my_space" type="RESOURCE"/>
+</resources>

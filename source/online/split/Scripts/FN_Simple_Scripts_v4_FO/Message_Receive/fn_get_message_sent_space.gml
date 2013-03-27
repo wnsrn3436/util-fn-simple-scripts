@@ -1,0 +1,1 @@
+return global._fn_message_sent_space_
