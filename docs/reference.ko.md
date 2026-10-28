@@ -15,7 +15,7 @@ Faucet Networking 위에서 동작하는 게임메이커 8용 네트워크 스�
 |---|---|
 | `send_server` | 서버에게 |
 | `send_all_server_me` | 서버와 나를 포함한 모두에게 |
-| `send_all_server` | 서버와 나를 뺀 모두에게 |
+| `send_all_server` | 나를 뺀 모두에게(서버 포함) |
 | `send_all_me` | 나를 포함한 플레이어 모두에게. 서버는 빠진다 |
 | `send_all` | 나를 뺀 플레이어 모두에게. 서버는 빠진다 |
 | `send_other` | 나 말고 다른 플레이어 한 명에게 |

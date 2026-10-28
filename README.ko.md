@@ -27,7 +27,7 @@ fn_message_send(handle, send_other, 7)                   // 나를 뺀 모두에
 fn_message_receive(handle)                               // 매 스텝. 메시지마다 User Defined 이벤트를 띄운다
 ```
 
-받을 사람은 플레이어 id 나 상수로 정한다. `send_server`(서버), `send_all_server_me`(서버와 나를 포함한 모두), `send_all_server`(서버와 나를 뺀 모두), `send_all_me`(나를 포함한 플레이어 모두), `send_all`(나를 뺀 플레이어 모두), `send_other`(나 말고 아무나)가 있다.
+받을 사람은 플레이어 id 나 상수로 정한다. `send_server`(서버), `send_all_server_me`(서버와 나를 포함한 모두), `send_all_server`(나를 뺀 모두, 서버 포함), `send_all_me`(나를 포함한 플레이어 모두), `send_all`(나를 뺀 플레이어 모두), `send_other`(나 말고 아무나)가 있다.
 
 `fn_message_receive` 는 메시지가 오면 User Defined 0 을, 플레이어가 들어오거나 나가면 서버에서 User Defined 1 과 2 를, 서버가 닫히면 클라이언트에서 User Defined 3 을 띄운다. 그 이벤트 안에서 `fn_get_message_id` 와 `fn_get_message_sent_player` 로 무슨 메시지를 누가 보냈는지 알고, `fnv_message` 버퍼에서 값을 읽는다.
 
