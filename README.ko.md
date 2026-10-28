@@ -1,5 +1,7 @@
 # FN Simple Scripts
 
+[English](README.md)
+
 게임메이커 8로 멀티플레이 게임과 온라인 게임을 만들게 해 주는 네트워크 스크립트 모음이다. Faucet Networking 소켓 위에서 서버 열기와 접속, 플레이어 관리, 메시지 송수신을 스크립트로 감쌌다. 플레이어를 공간 단위로 나눠 같은 공간끼리만 메시지를 주고받는 온라인판과, 공간 없이 모두가 한 방에 있는 멀티판 두 가지다. 스크립트 리소스와 예제, 스크립트 설명을 묶어 배포했다.
 
 <p>
@@ -11,7 +13,7 @@
 
 Releases에서 받은 압축 파일에는 두 판의 스크립트 리소스(`.gmres`)와 예제, Faucet Networking 확장(`.gex`)이 들어 있다. 확장을 게임메이커 8에 설치하고 `File > Import Resources` 로 쓰려는 판의 리소스를 불러온다.
 
-서버를 연 쪽이 플레이어 id 0 이고, 접속한 쪽은 서버가 준 id 를 받는다. 보낼 값은 전역 버퍼 `fnv_send` 에 쌓아 두고 메시지 id 를 붙여 보낸다.
+서버를 연 쪽이 플레이어 id 0 이고 접속한 쪽은 서버가 준 id 를 받는다. 보낼 값은 전역 버퍼 `fnv_send` 에 쌓아 두고 메시지 id 를 붙여 보낸다.
 
 ```gml
 fn_init()
@@ -40,9 +42,9 @@ switch (fn_get_message_id())
 }
 ```
 
-온라인판은 `fn_handle_listen(포트, 제한, 공간 개수, 내 공간)` 으로 공간을 정해 두고, `fn_message_send(handle, to_my_space, send_all, 7)` 처럼 받을 공간을 먼저 준다. `to_my_space`, `to_every_space`, `to_other_space` 나 공간 번호를 쓸 수 있다. 플레이어는 `fn_set_my_space` 로 공간을 옮기고, 그때 서버에 User Defined 4 가 뜬다. 스크립트 전체의 인자 설명은 [docs/reference.ko.md](docs/reference.ko.md) 에 있다.
+온라인판은 `fn_handle_listen(포트, 제한, 공간 개수, 내 공간)` 으로 공간을 정해 두고 `fn_message_send(handle, to_my_space, send_all, 7)` 처럼 받을 공간을 먼저 준다. `to_my_space`, `to_every_space`, `to_other_space` 나 공간 번호를 쓸 수 있다. 플레이어는 `fn_set_my_space` 로 공간을 옮기고 그때 서버에 User Defined 4 가 뜬다. 스크립트 전체의 인자 설명은 [docs/reference.ko.md](docs/reference.ko.md) 에 있다.
 
-멀티판 예제는 방을 만들거나 참가해 대기실에서 이름을 정하고, 방향키로 움직이며 스페이스로 화살을 쏘고 서버가 유령을 소환하는 작은 게임이다. 온라인판 예제는 서버 프로그램과 클라이언트가 따로 있고, 클라이언트가 포털로 룸을 옮기면 공간이 바뀌어 같은 룸의 플레이어에게만 좌표가 간다.
+멀티판 예제는 작은 게임이다. 방을 만들거나 참가해 대기실에서 이름을 정한 뒤 방향키로 움직이며 스페이스로 화살을 쏘고 서버가 유령을 소환한다. 온라인판 예제는 서버 프로그램과 클라이언트가 따로 있고, 클라이언트가 포털로 룸을 옮기면 공간이 바뀌어 같은 룸의 플레이어에게만 좌표가 간다.
 
 
 ## 구현 원리
@@ -63,7 +65,7 @@ repeat(argument2){ds_list_add(skv_list, ds_list_create()); ds_list_create()}
 //temp_player(6), temp_player_message_size, player_number(7), { player(8), player_message_size ... }
 ```
 
-**접속할 때 버전 문자열로 거른다.** 클라이언트는 접속하자마자 `cfn_game_version` 상수와 자기 공간, 그리고 `fnv_send` 에 쌓아 둔 값을 보낸다. 서버는 문자열이 자기 것과 다르면 끊고, 정원이 찼거나 받지 않는 중이면 그 이유를 번호로 돌려준다. 통과하면 소켓 번호를 플레이어 id 로 보내 준다. 접속과 동시에 이름 같은 값을 넘길 수 있는 이유가 이것이다.
+**접속할 때 버전 문자열로 거른다.** 클라이언트는 접속하자마자 `cfn_game_version` 상수와 자기 공간, `fnv_send` 에 쌓아 둔 값을 보낸다. 그래서 이름 같은 값을 접속과 동시에 넘길 수 있다. 서버는 문자열이 자기 것과 다르면 끊고, 정원이 찼거나 받지 않는 중이면 그 이유를 번호로 돌려준다. 통과하면 소켓 번호를 플레이어 id 로 보내 준다.
 
 **서버가 중계하고 자기 몫은 바로 넣는다.** 메시지는 길이, 받을 사람, 공간, 보낸 사람, 메시지 id 순의 머리 뒤에 `fnv_send` 의 내용이 붙는다. 서버는 받을 사람 값을 보고 해당 소켓들에 복사해 보낸다. `send_all_me` 처럼 자기도 받는 메시지는 네트워크로 나가기 전에 자기 수신 버퍼에 먼저 써 두므로 서버를 거쳐 돌아올 필요가 없다.
 

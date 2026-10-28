@@ -32,12 +32,12 @@ Faucet Networking 위에서 동작하는 게임메이커 8용 네트워크 스�
 
 ## 초기화
 
-- `fn_init()` : 전역 버퍼와 내부 목록을 만든다. 게임을 시작할 때 한 번 호출해야 한다. `fn_final` 을 호출하기 전에 다시 호출하면 안 된다.
+- `fn_init()` : 전역 버퍼와 내부 목록을 만든다. 게임을 시작할 때 한 번 호출해야 하고 `fn_final` 을 호출하기 전에는 다시 호출하면 안 된다.
 - `fn_final()` : 만든 핸들을 전부 없애고 `fn_init` 이 만든 것도 지운다. 게임을 끝낼 때 호출한다.
 
 ## 연결
 
-- `fn_handle_listen(port, limit)` : 서버를 열고 핸들을 돌려준다. `port` 는 1 부터 65535 사이의 정수다. `limit` 는 한 플레이어가 한 번에 보낼 수 있는 바이트 수의 상한으로, 이를 넘겨 보내는 플레이어는 강제로 내보낸다. 실패하면 `false` 를 돌려주고 이유는 `fn_get_error_string` 으로 읽는다.
+- `fn_handle_listen(port, limit)` : 서버를 열고 핸들을 돌려준다. `port` 는 1 부터 65535 사이의 정수다. `limit` 는 한 번에 보낼 수 있는 바이트 수의 상한으로, 한 플레이어가 이를 넘겨 보내면 강제로 내보낸다. 실패하면 `false` 를 돌려주고 이유는 `fn_get_error_string` 으로 읽는다.
 - `fn_handle_listen(port, limit, spaces, space)` (온라인판) : `spaces` 는 쓸 공간의 개수이고, `space` 는 서버 자신이 들어갈 공간이다. 공간 번호는 0 부터 `spaces - 1` 까지다.
 - `fn_handle_connect(ip, port, limit)` : 서버에 접속하고 핸들을 돌려준다. 접속하면서 `fnv_send` 에 쌓아 둔 값을 함께 보내므로 이름 같은 값을 처음부터 넘길 수 있다. 서버가 가득 찼거나, 받지 않는 중이거나, `cfn_game_version` 이 다르면 `false` 를 돌려주고 이유는 `fn_get_error_string` 으로 읽는다.
 - `fn_handle_connect(ip, port, limit, space)` (온라인판) : `space` 는 들어갈 공간이다.
@@ -62,7 +62,7 @@ Faucet Networking 위에서 동작하는 게임메이커 8용 네트워크 스�
 | User Defined 3 | 서버가 닫혔을 때. 클라이언트에서만 | `fn_get_error_string` 으로 이유를 읽는다 |
 | User Defined 4 | 플레이어가 공간을 옮겼을 때. 서버에서만 (온라인판) | `fn_get_message_sent_player` 는 옮긴 플레이어, `fn_get_message_sent_space` 는 이전 공간, `fn_get_message_id` 는 옮겨 간 공간. `fnv_message` 에 옮기며 보낸 값이 있다 |
 
-- `fn_message_break()` : 남은 메시지 처리를 멈추고 `fn_message_receive` 에서 빠져나온다. 이벤트 안에서 룸을 옮길 때 호출한다. 룸을 옮기면 그 뒤의 이벤트가 실행되지 않아 메시지가 사라지기 때문이다. User Defined 0, 2, 3 에서 쓸 수 있다.
+- `fn_message_break()` : 남은 메시지 처리를 멈추고 `fn_message_receive` 에서 빠져나온다. 룸을 옮기면 그 뒤의 이벤트가 실행되지 않아 메시지가 사라지므로 이벤트 안에서 룸을 옮길 때 호출한다. User Defined 0, 2, 3 에서 쓸 수 있다.
 - `fn_message_skip()` : 지금 처리 중인 메시지를 보관해 두었다가 다음 `fn_message_receive` 때 다시 띄운다. User Defined 0 에서 쓴다.
 - `fn_get_received_handle()` : 이벤트 안에서, 메시지를 받은 핸들을 돌려준다. 핸들이 여럿일 때 구분하는 용도다.
 - `fn_get_message_id()` : 이벤트 안에서, 메시지 id 를 돌려준다.
